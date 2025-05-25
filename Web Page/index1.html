@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Dental Anomaly Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Academic Header -->
+        <header class="academic-header">
+            <div class="university-branding">
+                <div class="logo-container">
+                    <img src="https://i.im.ge/2025/04/23/vd8fza.fotor-20250423202711.png" 
+                         alt="IAU Logo" 
+                         class="university-logo">
+                </div>
+                <div class="university-info">
+                    <h2>Istanbul Aydin University</h2>
+                    <p>Faculty of Engineering · Department of Computer Engineering</p>
+                </div>
+            </div>
+            
+            <div class="thesis-info">
+                <h1 class="thesis-title">Dental Anomaly Detection through Biomedical Imaging</h1>
+                <div class="submission-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Submitted by:</span>
+                        <span class="detail-value highlight-name">Abdallah I. J. Dwikat</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Advisor:</span>
+                        <span class="detail-value">Prof. Dr. Rafet AKDENIZ</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Co-Advisor:</span>
+                        <span class="detail-value">Prof. Dr. Dilara ARSLAN</span>
+                    </div>
+                    <div class="detail-item academic-year">
+                        <span>2024/2025 Academic Year</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Project Abstract -->
+        <section class="project-abstract">
+            <h2>Project Overview</h2>
+            <p>The AI system demonstrates 95.5% accuracy in detecting dental anomalies using panoramic X-rays. This research project shows significant potential for clinical application. The current implementation serves as a proof-of-concept, requiring further development and clinical validation for real-world deployment. 1000 X-ray images were used for training the model collected from IAU Dentistry Faculty Hospital.</p>
+            
+            <div class="collaboration-call">
+                <p>🚀 <strong>Seeking Collaboration:</strong> This project is open for partnerships with healthcare institutions, AI researchers, and dental technology companies to advance development. Financial support and technical collaboration opportunities available.</p>
+                <p>Student researcher available for joint development initiatives.</p>
+            </div>
+        </section>
+
+        <!-- Main Application Interface -->
+        <main class="application-interface">
+            <div class="drop-zone" id="drop-zone">
+                <div class="upload-prompts">
+                    <svg class="upload-icon" viewBox="0 0 24 24">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                    </svg>
+                    <div class="upload-instructions">
+                        <p class="drag-text">Drag dental X-ray here</p>
+                        <p class="browse-text">or click to browse files</p>
+                    </div>
+                </div>
+                <p class="file-formats">Supported formats: JPG, JPEG, PNG</p>
+                <input type="file" id="file-input" accept=".jpg,.jpeg,.png">
+            </div>
+
+            <div id="loading" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Analyzing Dental Structures...</p>
+                <p class="loading-subtext">Processing typically takes 3-5 seconds</p>
+            </div>
+
+            <div class="results-container" id="results">
+                <div class="result-card">
+                    <h3 class="result-heading"><span class="icon">🖼️</span> Original Image</h3>
+                    <img id="original-image" class="result-image" src="" alt="Input X-ray">
+                </div>
+                <div class="result-card">
+                    <h3 class="result-heading"><span class="icon">🔍</span> Detected Anomalies</h3>
+                    <img id="annotated-image" class="result-image" src="" alt="AI Analysis">
+                </div>
+            </div>
+        </main>
+
+        <!-- Academic Footer -->
+        <footer class="academic-footer">
+            <div class="thesis-credits">
+                <p>A thesis submitted to the Faculty of Engineering of Istanbul Aydin University by Abdallah I. J. Dwikat in partial fulfillment of the requirements for the degree of Bachelor of Engineering in Computer Engineering.</p>
+            </div>
+            
+            <div class="contact-info">
+                <p>For collaboration opportunities contact:<br>
+                <a href="mailto:adweikat12@gmail.com" class="email-link">adweikat12@gmail.com</a></p>
+            </div>
+            
+            <p class="copyright">© 2024 Istanbul Aydin University · All rights reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            handleFile(file);
+        });
+
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            handleFile(file);
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please upload an image file');
+                return;
+            }
+
+            loading.style.display = 'block';
+            results.style.display = 'none';
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('original-image').src = data.original_image;
+                    document.getElementById('annotated-image').src = data.annotated_image;
+                    results.style.display = 'grid';
+                    results.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error);
+            })
+            .finally(() => {
+                loading.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
