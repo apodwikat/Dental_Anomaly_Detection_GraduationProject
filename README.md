@@ -1,6 +1,7 @@
 AI-Powered Dental Anomaly Detection through Biomedical Imaging
 Submitted by: Abdallah I. J. Dwikat
-Supervisor: Prof. Dr. Rafet Akdeniz
+Avisor: Prof. Dr. Rafet Akdeniz
+Co-Avisor: Prof. Dr. Dilara ARSLAN
 2024/2025 Academic Year
 
 Project Overview:
