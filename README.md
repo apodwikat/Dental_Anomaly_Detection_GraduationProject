@@ -1,6 +1,6 @@
 # Dental Anomaly Detection through Biomedical X-rays: Deep Learning Approach
 ### Submitted by: Abdallah I. J. Dwikat
-### Avisor: Prof. Dr. Rafet Akdeniz
+### Avisor: Prof. Dr. Rafet AKDENIZ
 ### Co-Avisor: Prof. Dr. Dilara ARSLAN
 ### 2024/2025 Academic Year
 
