@@ -11,3 +11,5 @@ The AI system demonstrates 95.5% accuracy in detecting dental anomalies using pa
 This project is open for partnerships with healthcare institutions, AI researchers, and dental technology companies to advance development. Financial support and technical collaboration opportunities available.
 
 Student researcher available for joint development initiatives.
+### Email: adweikt12@gmail.com
+### LinkedIn: https://www.linkedin.com/in/abdallah-dwikat-04095927b/
